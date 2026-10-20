@@ -3550,7 +3550,8 @@ MonoBehaviour:
   - {fileID: 844765328}
   - {fileID: 1997879604}
   - {fileID: 389518684}
-  targetWaypoint: 0
+  targetWaypoint: 1
+  startMovingSpeed: 4
 --- !u!1 &1997879602
 GameObject:
   m_ObjectHideFlags: 0
