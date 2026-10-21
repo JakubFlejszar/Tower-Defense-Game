@@ -23,7 +23,6 @@ public class Castle : MonoBehaviour
             {
                 int damage = 7;
                 ReceiveDamage(damage);
-                Debug.Log(health);
             }
         }
     }
@@ -40,5 +39,6 @@ public class Castle : MonoBehaviour
             Debug.Log("You've lost");
             castleAlive = false;
         }
+        Debug.Log(health);
     }
 }

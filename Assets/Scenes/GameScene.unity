@@ -3431,7 +3431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c18377fadf819e4bb1abd8b52020b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Castle
-  startHealth: 50
+  startHealth: 100
 --- !u!1 &1952586586
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,8 +3550,12 @@ MonoBehaviour:
   - {fileID: 844765328}
   - {fileID: 1997879604}
   - {fileID: 389518684}
+  castle: {fileID: 1939425224}
   targetWaypoint: 1
-  startMovingSpeed: 4
+  startMovingSpeed: 200
+  startingHealth: 50
+  startingDamage: 10
+  startingAttackCooldown: 3
 --- !u!1 &1997879602
 GameObject:
   m_ObjectHideFlags: 0
