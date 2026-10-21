@@ -2,33 +2,28 @@ using UnityEngine;
 
 public class Bandit : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Transform[] waypoints;
 
     [SerializeField] private Castle castle;
     [SerializeField] private int targetWaypoint;
     [SerializeField] private float startMovingSpeed = 2;
     [SerializeField] private int startingHealth = 50;
-    [SerializeField] private int startingDamage = 10;
+    [SerializeField] private int startingAttackDamage = 10;
     [SerializeField] private float startingAttackCooldown = 1.5f;
-
     private float timeSinceLastAttack;
     private float attackCooldown;
     private int damage;
     private int health;
     private float movingSpeed;
-
     private void Start()
     {
         attackCooldown = startingAttackCooldown;
         timeSinceLastAttack = attackCooldown;
-        damage = startingDamage;
+        damage = startingAttackDamage;
         health = startingHealth;
         movingSpeed = startMovingSpeed;
         transform.position = waypoints[0].position;
     }
-
-    // Update is called once per frame
     private void Update()
     {
         if (targetWaypoint == waypoints.Length)
@@ -62,5 +57,22 @@ public class Bandit : MonoBehaviour
             castle.ReceiveDamage(damage);
             timeSinceLastAttack = 0;
         }
+    }
+    public void ReceiveDamage(int receivedDamage)
+    {
+        health -= receivedDamage;
+        if (health <= 0)
+        {
+            Debug.Log("Bandit's dead");
+            Destroy(gameObject);
+            return;
+        }
+
+        Debug.Log($"Bandit {health}");
+    }
+    public void Setup(Castle setupCastle, Transform[] setupWaypoints)
+    {
+        waypoints = setupWaypoints;
+        castle = setupCastle;
     }
 }

@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Castle : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private int startHealth = 50;
 
     private int health;
@@ -14,7 +13,6 @@ public class Castle : MonoBehaviour
         health = startHealth;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (castleAlive == true)
