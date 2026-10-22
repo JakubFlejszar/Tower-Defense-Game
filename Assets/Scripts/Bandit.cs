@@ -10,11 +10,13 @@ public class Bandit : MonoBehaviour
     [SerializeField] private int startingHealth = 50;
     [SerializeField] private int startingAttackDamage = 10;
     [SerializeField] private float startingAttackCooldown = 1.5f;
+
     private float timeSinceLastAttack;
     private float attackCooldown;
     private int damage;
     private int health;
     private float movingSpeed;
+
     private void Start()
     {
         attackCooldown = startingAttackCooldown;
@@ -24,6 +26,7 @@ public class Bandit : MonoBehaviour
         movingSpeed = startMovingSpeed;
         transform.position = waypoints[0].position;
     }
+
     private void Update()
     {
         if (targetWaypoint == waypoints.Length)
@@ -58,6 +61,7 @@ public class Bandit : MonoBehaviour
             timeSinceLastAttack = 0;
         }
     }
+
     public void ReceiveDamage(int receivedDamage)
     {
         health -= receivedDamage;
@@ -70,6 +74,7 @@ public class Bandit : MonoBehaviour
 
         Debug.Log($"Bandit {health}");
     }
+
     public void Setup(Castle setupCastle, Transform[] setupWaypoints)
     {
         waypoints = setupWaypoints;
