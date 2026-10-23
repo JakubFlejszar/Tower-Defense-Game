@@ -5,17 +5,18 @@ public class BanditSpawner : MonoBehaviour
     [SerializeField] private Bandit banditPrefab;
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private Castle castle;
-    [SerializeField] private float startingBanditSpawningFrequency = 3.5f;
+    [SerializeField] private float startingBanditSpawningCooldown = 3.5f;
     [SerializeField] private int startingDesiredBanditCount = 5;
-    private float lastBanditSpawn;
+    private float timeSinceLastSpawn;
     private int desiredBanditCount;
-    private float banditSpawningFrequency;
+    private float banditSpawningCooldown;
     private int banditCount;
 
     private void Start()
     {
+        timeSinceLastSpawn = banditSpawningCooldown;
         desiredBanditCount = startingDesiredBanditCount;
-        banditSpawningFrequency = startingBanditSpawningFrequency;
+        banditSpawningCooldown = startingBanditSpawningCooldown;
     }
 
     private void Update()
@@ -23,19 +24,19 @@ public class BanditSpawner : MonoBehaviour
         Spawning();
     }
 
-    public void Spawning()
+    private void Spawning()
     {
         if (banditCount == desiredBanditCount)
         {
             return;
         }
-        lastBanditSpawn += Time.deltaTime;
-        if (lastBanditSpawn >= banditSpawningFrequency)
+        timeSinceLastSpawn += Time.deltaTime;
+        if (timeSinceLastSpawn >= banditSpawningCooldown)
         {
             Bandit newBandit = Instantiate(banditPrefab);
             newBandit.Setup(castle, waypoints);
             banditCount++;
-            lastBanditSpawn = 0;
+            timeSinceLastSpawn = 0;
         }
     }
 }
