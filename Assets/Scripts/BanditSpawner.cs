@@ -11,17 +11,19 @@ public class BanditSpawner : MonoBehaviour
     private int desiredBanditCount;
     private float banditSpawningCooldown;
     private int banditCount;
+    private bool playerWon;
 
     private void Start()
     {
-        timeSinceLastSpawn = banditSpawningCooldown;
         desiredBanditCount = startingDesiredBanditCount;
         banditSpawningCooldown = startingBanditSpawningCooldown;
+        timeSinceLastSpawn = banditSpawningCooldown;
     }
 
     private void Update()
     {
         Spawning();
+        Win();
     }
 
     private void Spawning()
@@ -37,6 +39,23 @@ public class BanditSpawner : MonoBehaviour
             newBandit.Setup(castle, waypoints);
             banditCount++;
             timeSinceLastSpawn = 0;
+        }
+    }
+
+    private void Win()
+    {
+        if (playerWon)
+        {
+            return;
+        }
+        if (banditCount == desiredBanditCount)
+        {
+            var bandits = FindObjectsByType<Bandit>();
+            if (castle.IsAlive() && bandits.Length == 0)
+            {
+                Debug.Log("You won");
+                playerWon = true;
+            }
         }
     }
 }

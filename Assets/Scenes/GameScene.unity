@@ -405,6 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227609332}
   - component: {fileID: 227609331}
+  - component: {fileID: 227609333}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -487,6 +488,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &227609333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227609330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &273428692
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 273428694}
   - component: {fileID: 273428693}
+  - component: {fileID: 273428695}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -579,6 +595,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &273428695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273428692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &281276411
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317946996}
   - component: {fileID: 317946995}
+  - component: {fileID: 317946997}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -763,6 +794,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &317946997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317946994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &367151927
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +1002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 397423174}
   - component: {fileID: 397423173}
+  - component: {fileID: 397423175}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -1039,6 +1085,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &397423175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397423172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &411381591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 411381593}
   - component: {fileID: 411381592}
+  - component: {fileID: 411381594}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -1131,6 +1192,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &411381594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411381591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &452592345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,8 +1494,8 @@ MonoBehaviour:
   - {fileID: 1997879604}
   - {fileID: 389518684}
   castle: {fileID: 1939425224}
-  startingBanditSpawningCooldown: 1
-  startingDesiredBanditCount: 1
+  startingBanditSpawningCooldown: 0.57
+  startingDesiredBanditCount: 53
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,6 +2048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1181532195}
   - component: {fileID: 1181532194}
+  - component: {fileID: 1181532196}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -2055,6 +2131,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1181532196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181532193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &1192519313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,6 +2523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376143569}
   - component: {fileID: 1376143568}
+  - component: {fileID: 1376143570}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -2515,6 +2606,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1376143570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376143567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &1425501092
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,6 +3042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674062417}
   - component: {fileID: 1674062416}
+  - component: {fileID: 1674062418}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -3019,6 +3125,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674062418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674062415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &1748218440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,6 +3613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Castle
   startHealth: 100
+  health: 0
 --- !u!1 &1997879602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,6 +3716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2005942351}
   - component: {fileID: 2005942350}
+  - component: {fileID: 2005942352}
   m_Layer: 0
   m_Name: TurretSpot
   m_TagString: Untagged
@@ -3677,6 +3799,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 861317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2005942352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005942349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9acf2d4e066b2479e2c550edcf108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSpawner
+  towerPrefab: {fileID: -676477179727212861, guid: fa47f1b7138d2664db23fa1bd162e4fb, type: 3}
+  radius: 2
 --- !u!1 &2069658282
 GameObject:
   m_ObjectHideFlags: 0

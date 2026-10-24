@@ -7,6 +7,7 @@ public class Castle : MonoBehaviour
 
     private int health;
     private bool castleAlive = true;
+    private bool isAlive;
 
     private void Start()
     {
@@ -38,5 +39,15 @@ public class Castle : MonoBehaviour
             castleAlive = false;
         }
         Debug.Log(health);
+    }
+
+    public bool IsAlive()
+    {
+        if (health >= 1)
+        {
+            return isAlive = true;
+        }
+
+        return isAlive = false;
     }
 }
