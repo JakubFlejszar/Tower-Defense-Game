@@ -120,7 +120,7 @@ MonoBehaviour:
   - {fileID: 0}
   castle: {fileID: 0}
   targetWaypoint: 1
-  startMovingSpeed: 20
+  startMovingSpeed: 10
   startingHealth: 50
   startingAttackDamage: 10
   startingAttackCooldown: 3

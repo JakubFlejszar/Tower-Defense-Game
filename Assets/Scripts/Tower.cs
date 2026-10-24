@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour
     private float range;
     private int damage;
 
-    void Start()
+    private void Start()
     {
         timeSinceLastShot = startingShootingCooldown;
         shootingCooldown = startingShootingCooldown;
@@ -19,10 +19,11 @@ public class Tower : MonoBehaviour
         damage = startingDamage;
     }
 
-    void Update()
+    private void Update()
     {
         Shooting();
     }
+
     private void Shooting()
     {
         Bandit target = LocateTarget();
