@@ -1,17 +1,19 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Castle : MonoBehaviour
 {
-    [SerializeField] private int startHealth = 50;
+    [SerializeField] private int startHealth = 100;
+    [SerializeField] private TMP_Text healthUi;
 
     private int health;
     private bool castleAlive = true;
-    private bool isAlive;
 
     private void Start()
     {
         health = startHealth;
+        healthUi.text = $"Castle HP: {health}";
     }
 
     private void Update()
@@ -38,16 +40,11 @@ public class Castle : MonoBehaviour
             Debug.Log("You've lost");
             castleAlive = false;
         }
-        Debug.Log(health);
+        healthUi.text = $"Castle HP: {health}";
     }
 
     public bool IsAlive()
     {
-        if (health >= 1)
-        {
-            return isAlive = true;
-        }
-
-        return isAlive = false;
+        return castleAlive;
     }
 }
