@@ -7,6 +7,7 @@ public class BanditSpawner : MonoBehaviour
     [SerializeField] private Castle castle;
     [SerializeField] private float startingBanditSpawningCooldown = 3.5f;
     [SerializeField] private int startingDesiredBanditCount = 5;
+    [SerializeField] private EndScreen endScreen;
     private float timeSinceLastSpawn;
     private int desiredBanditCount;
     private float banditSpawningCooldown;
@@ -53,7 +54,7 @@ public class BanditSpawner : MonoBehaviour
             var bandits = FindObjectsByType<Bandit>();
             if (castle.IsAlive() && bandits.Length == 0)
             {
-                Debug.Log("You won");
+                endScreen.Win();
                 playerWon = true;
             }
         }

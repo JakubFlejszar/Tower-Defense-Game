@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Castle : MonoBehaviour
 {
+    [SerializeField] private EndScreen endScreen;
     [SerializeField] private int startHealth = 100;
     [SerializeField] private TMP_Text healthUi;
     [SerializeField] private Transform healthBar;
@@ -40,11 +41,11 @@ public class Castle : MonoBehaviour
             return;
         }
         health -= damage;
-        healthBarHealth = (float)health / startHealth;
+        healthBarHealth = Mathf.Clamp01((float)health / startHealth);
         ShowHealthBar();
         if (health <= 0)
         {
-            Debug.Log("You've lost");
+            endScreen.Lose();
             castleAlive = false;
         }
         healthUi.text = $"Castle HP: {health}";
@@ -54,6 +55,7 @@ public class Castle : MonoBehaviour
     {
         return castleAlive;
     }
+
     private void ShowHealthBar()
     {
         healthBarScale.y = healthBarHealth * fullBarScale;

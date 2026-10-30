@@ -17,7 +17,7 @@ public class Bandit : MonoBehaviour
     private int health;
     private float movingSpeed;
     private Vector3 healthBarScale;
-    float healthBarFragment;
+    private float healthBarFragment;
 
     private void Start()
     {
@@ -69,7 +69,7 @@ public class Bandit : MonoBehaviour
     public void ReceiveDamage(int receivedDamage)
     {
         health -= receivedDamage;
-        healthBarFragment = (float)health / startingHealth;
+        healthBarFragment = Mathf.Clamp01((float)health / startingHealth);
         UpdateHealthBar();
         if (health <= 0)
         {
@@ -86,6 +86,7 @@ public class Bandit : MonoBehaviour
         waypoints = setupWaypoints;
         castle = setupCastle;
     }
+
     public void UpdateHealthBar()
     {
         healthBarScale.x = healthBarFragment;
