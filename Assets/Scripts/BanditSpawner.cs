@@ -8,6 +8,7 @@ public class BanditSpawner : MonoBehaviour
     [SerializeField] private float[] spawnCooldownPerWave;
     [SerializeField] private int[] banditCountPerWave;
     [SerializeField] private EndScreen endScreen;
+    [SerializeField] private WaveUi waveUi;
 
     private int currentWave;
     private float timeSinceLastSpawn;
@@ -65,6 +66,7 @@ public class BanditSpawner : MonoBehaviour
                     banditCount = 0;
                     banditSpawningCooldown = spawnCooldownPerWave[currentWave];
                     timeSinceLastSpawn = banditSpawningCooldown;
+                    waveUi.WaveEnd();
                 }
             }
         }
