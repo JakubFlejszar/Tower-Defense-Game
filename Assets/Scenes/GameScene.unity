@@ -1725,9 +1725,13 @@ MonoBehaviour:
   - {fileID: 1997879604}
   - {fileID: 389518684}
   castle: {fileID: 1939425224}
-  startingBanditSpawningCooldown: 0.57
-  startingDesiredBanditCount: 1
+  spawnCooldownPerWave:
+  - 3
+  - 2
+  - 1
+  banditCountPerWave: 010000000200000003000000i
   endScreen: {fileID: 1123658371}
+  startingcurrentWave: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

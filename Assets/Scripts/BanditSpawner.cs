@@ -5,19 +5,19 @@ public class BanditSpawner : MonoBehaviour
     [SerializeField] private Bandit banditPrefab;
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private Castle castle;
-    [SerializeField] private float startingBanditSpawningCooldown = 3.5f;
-    [SerializeField] private int startingDesiredBanditCount = 5;
+    [SerializeField] private float[] spawnCooldownPerWave;
+    [SerializeField] private int[] banditCountPerWave;
     [SerializeField] private EndScreen endScreen;
+
+    private int currentWave;
     private float timeSinceLastSpawn;
-    private int desiredBanditCount;
     private float banditSpawningCooldown;
     private int banditCount;
     private bool playerWon;
 
     private void Start()
     {
-        desiredBanditCount = startingDesiredBanditCount;
-        banditSpawningCooldown = startingBanditSpawningCooldown;
+        banditSpawningCooldown = spawnCooldownPerWave[currentWave];
         timeSinceLastSpawn = banditSpawningCooldown;
     }
 
@@ -29,7 +29,7 @@ public class BanditSpawner : MonoBehaviour
 
     private void Spawning()
     {
-        if (banditCount == desiredBanditCount)
+        if (banditCount == banditCountPerWave[currentWave])
         {
             return;
         }
@@ -49,13 +49,23 @@ public class BanditSpawner : MonoBehaviour
         {
             return;
         }
-        if (banditCount == desiredBanditCount)
+        if (banditCount == banditCountPerWave[currentWave])
         {
             var bandits = FindObjectsByType<Bandit>();
             if (castle.IsAlive() && bandits.Length == 0)
             {
-                endScreen.Win();
-                playerWon = true;
+                if (currentWave == banditCountPerWave.Length - 1)
+                {
+                    endScreen.Win();
+                    playerWon = true;
+                }
+                else
+                {
+                    currentWave++;
+                    banditCount = 0;
+                    banditSpawningCooldown = spawnCooldownPerWave[currentWave];
+                    timeSinceLastSpawn = banditSpawningCooldown;
+                }
             }
         }
     }
