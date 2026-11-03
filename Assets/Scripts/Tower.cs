@@ -5,6 +5,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private float startingShootingCooldown = 1;
     [SerializeField] private float startingRange = 1;
     [SerializeField] private int startingDamage = 5;
+    [SerializeField] private TowerArrow towerArrow;
 
     private float shootingCooldown;
     private float timeSinceLastShot;
@@ -34,7 +35,8 @@ public class Tower : MonoBehaviour
         timeSinceLastShot += Time.deltaTime;
         if (timeSinceLastShot >= shootingCooldown)
         {
-            target.ReceiveDamage(damage);
+            TowerArrow newTowerArrow = Instantiate(towerArrow, transform.position, Quaternion.identity);
+            newTowerArrow.Setup(damage, target);
             timeSinceLastShot = 0;
         }
     }

@@ -1870,7 +1870,7 @@ MonoBehaviour:
   - 3
   banditCountPerWave: 010000000200000003000000i
   endScreen: {fileID: 1123658371}
-  waveUi: {fileID: 0}
+  waveUi: {fileID: 1123658372}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

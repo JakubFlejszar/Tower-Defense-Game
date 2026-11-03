@@ -48,6 +48,7 @@ MonoBehaviour:
   startingShootingCooldown: 1
   startingRange: 25
   startingDamage: 5
+  towerArrow: {fileID: -4401800616226613024, guid: c231d4b9d0b87c8409eeea31a7aa2065, type: 3}
 --- !u!212 &-9063434833312283914
 SpriteRenderer:
   serializedVersion: 3
