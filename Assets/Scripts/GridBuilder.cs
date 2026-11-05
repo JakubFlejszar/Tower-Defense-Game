@@ -13,8 +13,11 @@ public class GridBuilder : MonoBehaviour
     private int yPoint;
     private Vector3 towerPos;
 
+    private bool[,] isOccupied;
+
     private void Start()
     {
+        isOccupied = new bool[mapSize.x, mapSize.y];
         mapCorner = leftBottomCorner.position;
     }
 
@@ -39,6 +42,10 @@ public class GridBuilder : MonoBehaviour
             {
                 return;
             }
+            if (isOccupied[xPoint, yPoint])
+            {
+                return;
+            }
             TowerPosition();
         }
     }
@@ -51,5 +58,6 @@ public class GridBuilder : MonoBehaviour
         towerPos.y = towerPosY;
         towerPos.z = 0;
         GameObject.Instantiate(towerPrefab, towerPos, Quaternion.identity);
+        isOccupied[xPoint, yPoint] = true;
     }
 }
