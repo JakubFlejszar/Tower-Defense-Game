@@ -5,6 +5,7 @@ public class GridBuilder : MonoBehaviour
 {
     [SerializeField] private Tower towerPrefab;
     [SerializeField] private Transform leftBottomCorner;
+    [SerializeField] private SpriteRenderer[] path;
     [SerializeField] private Vector2Int mapSize = new Vector2Int(20, 20);
     private float tileSize = 4;
 
@@ -19,6 +20,7 @@ public class GridBuilder : MonoBehaviour
     {
         isOccupied = new bool[mapSize.x, mapSize.y];
         mapCorner = leftBottomCorner.position;
+        MarkPathTiles();
     }
 
     private void Update()
@@ -52,12 +54,41 @@ public class GridBuilder : MonoBehaviour
 
     private void TowerPosition()
     {
-        var towerPosX = xPoint * tileSize + tileSize / 2 + mapCorner.x;
-        var towerPosY = yPoint * tileSize + tileSize / 2 + mapCorner.y;
-        towerPos.x = towerPosX;
-        towerPos.y = towerPosY;
-        towerPos.z = 0;
+        towerPos = CheckIfBuildSpot(xPoint, yPoint);
         GameObject.Instantiate(towerPrefab, towerPos, Quaternion.identity);
         isOccupied[xPoint, yPoint] = true;
+    }
+
+    private Vector3 CheckIfBuildSpot(int xPoint, int yPoint)
+    {
+        Vector3 buildSpot;
+        var posX = xPoint * tileSize + tileSize / 2 + mapCorner.x;
+        var posY = yPoint * tileSize + tileSize / 2 + mapCorner.y;
+        buildSpot.x = posX;
+        buildSpot.y = posY;
+        buildSpot.z = 0;
+        return buildSpot;
+    }
+    private void MarkPathTiles()
+    {
+        int x = 0;
+        int y = 0;
+        while (x < mapSize.x)
+        {
+            y = 0;
+            while (y < mapSize.y)
+            {
+                var middle = CheckIfBuildSpot(x, y);
+                foreach (SpriteRenderer pathFragmet in path)
+                {
+                    if (pathFragmet.bounds.Contains(middle))
+                    {
+                        isOccupied[x, y] = true;
+                    }
+                }
+                y++;
+            }
+            x++;
+        }
     }
 }
