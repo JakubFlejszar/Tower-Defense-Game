@@ -10,13 +10,15 @@ public class Scoreboard : MonoBehaviour
 
     private void Start()
     {
+        GetTimes();
+        ShowScoreboard();
     }
 
     private void Update()
     {
     }
 
-    public void addTimes(float time)
+    public void AddTimes(float time)
     {
         times.Add((time));
         times.Sort();
@@ -24,10 +26,12 @@ public class Scoreboard : MonoBehaviour
         {
             times.RemoveAt(5);
         }
-        showScoreboard();
+        SaveTimes();
+
+        ShowScoreboard();
     }
 
-    private void showScoreboard()
+    private void ShowScoreboard()
     {
         string text = "";
         int i = 1;
@@ -37,5 +41,28 @@ public class Scoreboard : MonoBehaviour
             i++;
         }
         scoreboardText.SetText(text);
+    }
+
+    private void SaveTimes()
+    {
+        int i = 1;
+        foreach (float time in times)
+        {
+            PlayerPrefs.SetFloat($"time{i}", time);
+            i++;
+        }
+        PlayerPrefs.SetInt("timeCount", times.Count);
+        PlayerPrefs.Save();
+    }
+
+    private void GetTimes()
+    {
+        var timeCount = PlayerPrefs.GetInt("timeCount");
+        int i = 1;
+        while (i <= timeCount)
+        {
+            times.Add(PlayerPrefs.GetFloat($"time{i}"));
+            i++;
+        }
     }
 }

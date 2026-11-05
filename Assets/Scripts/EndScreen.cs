@@ -39,7 +39,7 @@ public class EndScreen : MonoBehaviour
         finalText.SetText("Victory");
         gameTime.SetText($"Time:{TimeSpan.FromSeconds(timer.ReturnPlayTime()).ToString(@"mm\:ss")}");
         screenTint.SetActive(true);
-        scoreboard.addTimes(timer.ReturnPlayTime());
+        scoreboard.AddTimes(timer.ReturnPlayTime());
     }
 
     public void PlayAgain()
