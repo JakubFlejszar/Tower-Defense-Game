@@ -10,8 +10,8 @@ public class GridBuilder : MonoBehaviour
     private float tileSize = 4;
 
     private Vector3 mapCorner;
-    private int xPoint;
-    private int yPoint;
+    private int tileX;
+    private int tileY;
     private Vector3 towerPos;
 
     private bool[,] isOccupied;
@@ -25,49 +25,49 @@ public class GridBuilder : MonoBehaviour
 
     private void Update()
     {
-        calculateSize();
+        HandleClick();
     }
 
-    private void calculateSize()
+    private void HandleClick()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             var mousePos = Mouse.current.position.ReadValue();
-            var cameraPos = Camera.main.ScreenToWorldPoint(mousePos);
-            cameraPos.z = 0;
-            var sizeOfMap = cameraPos - mapCorner;
-            float xSize = sizeOfMap.x / tileSize;
-            float ySize = sizeOfMap.y / tileSize;
-            xPoint = Mathf.FloorToInt(xSize);
-            yPoint = Mathf.FloorToInt(ySize);
-            if (xPoint < 0 || yPoint < 0 || xPoint >= mapSize.x || yPoint >= mapSize.y)
+            var clickPosition = Camera.main.ScreenToWorldPoint(mousePos);
+            clickPosition.z = 0;
+            var offsetFromCorner = clickPosition - mapCorner;
+            float tileExactX = offsetFromCorner.x / tileSize;
+            float tileExactY = offsetFromCorner.y / tileSize;
+            tileX = Mathf.FloorToInt(tileExactX);
+            tileY = Mathf.FloorToInt(tileExactY);
+            if (tileX < 0 || tileY < 0 || tileX >= mapSize.x || tileY >= mapSize.y)
             {
                 return;
             }
-            if (isOccupied[xPoint, yPoint])
+            if (isOccupied[tileX, tileY])
             {
                 return;
             }
-            TowerPosition();
+            PlaceTower();
         }
     }
 
-    private void TowerPosition()
+    private void PlaceTower()
     {
-        towerPos = CheckIfBuildSpot(xPoint, yPoint);
+        towerPos = GetTileCenter(tileX, tileY);
         GameObject.Instantiate(towerPrefab, towerPos, Quaternion.identity);
-        isOccupied[xPoint, yPoint] = true;
+        isOccupied[tileX, tileY] = true;
     }
 
-    private Vector3 CheckIfBuildSpot(int xPoint, int yPoint)
+    private Vector3 GetTileCenter(int tileX, int tileY)
     {
-        Vector3 buildSpot;
-        var posX = xPoint * tileSize + tileSize / 2 + mapCorner.x;
-        var posY = yPoint * tileSize + tileSize / 2 + mapCorner.y;
-        buildSpot.x = posX;
-        buildSpot.y = posY;
-        buildSpot.z = 0;
-        return buildSpot;
+        Vector3 center;
+        var posX = tileX * tileSize + tileSize / 2 + mapCorner.x;
+        var posY = tileY * tileSize + tileSize / 2 + mapCorner.y;
+        center.x = posX;
+        center.y = posY;
+        center.z = 0;
+        return center;
     }
     private void MarkPathTiles()
     {
@@ -78,10 +78,10 @@ public class GridBuilder : MonoBehaviour
             y = 0;
             while (y < mapSize.y)
             {
-                var middle = CheckIfBuildSpot(x, y);
-                foreach (SpriteRenderer pathFragmet in path)
+                var tileCenter = GetTileCenter(x, y);
+                foreach (SpriteRenderer pathFragment in path)
                 {
-                    if (pathFragmet.bounds.Contains(middle))
+                    if (pathFragment.bounds.Contains(tileCenter))
                     {
                         isOccupied[x, y] = true;
                     }
