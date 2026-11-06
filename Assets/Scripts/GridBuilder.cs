@@ -6,13 +6,16 @@ public class GridBuilder : MonoBehaviour
     [SerializeField] private Tower towerPrefab;
     [SerializeField] private Transform leftBottomCorner;
     [SerializeField] private SpriteRenderer[] path;
+    [SerializeField] private SpriteRenderer castle;
     [SerializeField] private Vector2Int mapSize = new Vector2Int(20, 20);
+    [SerializeField] private SpriteRenderer previewTower;
     private float tileSize = 4;
 
     private Vector3 mapCorner;
     private int tileX;
     private int tileY;
     private Vector3 towerPos;
+    private Vector2 mousePos;
 
     private bool[,] isOccupied;
 
@@ -20,11 +23,13 @@ public class GridBuilder : MonoBehaviour
     {
         isOccupied = new bool[mapSize.x, mapSize.y];
         mapCorner = leftBottomCorner.position;
-        MarkPathTiles();
+        MarkBlockedTiles();
     }
 
     private void Update()
     {
+        MousePosition();
+        UpdatePreview();
         HandleClick();
     }
 
@@ -32,15 +37,7 @@ public class GridBuilder : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            var mousePos = Mouse.current.position.ReadValue();
-            var clickPosition = Camera.main.ScreenToWorldPoint(mousePos);
-            clickPosition.z = 0;
-            var offsetFromCorner = clickPosition - mapCorner;
-            float tileExactX = offsetFromCorner.x / tileSize;
-            float tileExactY = offsetFromCorner.y / tileSize;
-            tileX = Mathf.FloorToInt(tileExactX);
-            tileY = Mathf.FloorToInt(tileExactY);
-            if (tileX < 0 || tileY < 0 || tileX >= mapSize.x || tileY >= mapSize.y)
+            if (!IsInsideMap())
             {
                 return;
             }
@@ -69,7 +66,8 @@ public class GridBuilder : MonoBehaviour
         center.z = 0;
         return center;
     }
-    private void MarkPathTiles()
+
+    private void MarkBlockedTiles()
     {
         int x = 0;
         int y = 0;
@@ -86,9 +84,57 @@ public class GridBuilder : MonoBehaviour
                         isOccupied[x, y] = true;
                     }
                 }
+                if (castle.bounds.Contains(tileCenter))
+                {
+                    isOccupied[x, y] = true;
+                }
+
                 y++;
             }
             x++;
+        }
+    }
+
+    private void MousePosition()
+    {
+        mousePos = Mouse.current.position.ReadValue();
+        var worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        worldMousePos.z = 0;
+        var offsetFromCorner = worldMousePos - mapCorner;
+        float tileExactX = offsetFromCorner.x / tileSize;
+        float tileExactY = offsetFromCorner.y / tileSize;
+        tileX = Mathf.FloorToInt(tileExactX);
+        tileY = Mathf.FloorToInt(tileExactY);
+    }
+
+    private bool IsInsideMap()
+    {
+        if (tileX < 0 || tileY < 0 || tileX >= mapSize.x || tileY >= mapSize.y)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private void UpdatePreview()
+    {
+        var tileCenter = GetTileCenter(tileX, tileY);
+        previewTower.transform.position = tileCenter;
+        if (!IsInsideMap())
+        {
+            previewTower.color = new Color(r: 1, g: 0, b: 0, a: 0.5f);
+            return;
+        }
+        if (IsInsideMap())
+        {
+            if (isOccupied[tileX, tileY])
+            {
+                previewTower.color = new Color(r: 1, g: 0, b: 0, a: 0.5f);
+            }
+            else
+            {
+                previewTower.color = new Color(r: 0, g: 1, b: 0, a: 0.7f);
+            }
         }
     }
 }
