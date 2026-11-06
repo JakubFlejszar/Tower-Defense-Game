@@ -11,19 +11,27 @@ public class Castle : MonoBehaviour
     private float fullBarScale;
     private Vector3 healthBarScale;
     private int health;
+    private int maxHealth;
     private bool castleAlive = true;
     private float healthBarHealth;
-
+    private bool upgradedInCurrentWave = false;
+    private int castleLevel;
+    Vector3 onMapMouse;
+    SpriteRenderer castle;
     private void Start()
     {
+        castle = GetComponent<SpriteRenderer>();
         fullBarScale = healthBar.localScale.y;
         healthBarScale = healthBar.localScale;
         health = startHealth;
+        maxHealth = health;
+
         healthUi.text = $"Castle HP: {health}";
     }
 
     private void Update()
     {
+        WhereClicked();
         if (castleAlive == true)
         {
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -41,14 +49,13 @@ public class Castle : MonoBehaviour
             return;
         }
         health -= damage;
-        healthBarHealth = Mathf.Clamp01((float)health / startHealth);
+        UpdateHealthUi();
         ShowHealthBar();
         if (health <= 0)
         {
             endScreen.Lose();
             castleAlive = false;
         }
-        healthUi.text = $"Castle HP: {health}";
     }
 
     public bool IsAlive()
@@ -60,5 +67,45 @@ public class Castle : MonoBehaviour
     {
         healthBarScale.y = healthBarHealth * fullBarScale;
         healthBar.localScale = healthBarScale;
+    }
+    private void WhereClicked()
+    {
+        var mouseClick = Mouse.current.leftButton.wasPressedThisFrame;
+        if (mouseClick)
+        {
+            var mouseClickPos = Mouse.current.position.ReadValue();
+            onMapMouse = Camera.main.ScreenToWorldPoint(mouseClickPos);
+            onMapMouse.z = 0;
+            ClickedOnCastle();
+        }
+    }
+    private void ClickedOnCastle()
+    {
+        if (castle.bounds.Contains(onMapMouse))
+        {
+            UpgradeCastle();
+        }
+    }
+    private void UpgradeCastle()
+    {
+        if (castleLevel == 3 || upgradedInCurrentWave == true)
+        {
+            return;
+        }
+        maxHealth += 25;
+        health += 25;
+        castleLevel++;
+        upgradedInCurrentWave = true;
+        UpdateHealthUi();
+        ShowHealthBar();
+    }
+    private void UpdateHealthUi()
+    {
+        healthBarHealth = Mathf.Clamp01((float)health / maxHealth);
+        healthUi.text = $"Castle HP: {health}";
+    }
+    public void ResetUpgrade()
+    {
+        upgradedInCurrentWave = false;
     }
 }

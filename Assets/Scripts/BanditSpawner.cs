@@ -67,6 +67,7 @@ public class BanditSpawner : MonoBehaviour
                     banditSpawningCooldown = spawnCooldownPerWave[currentWave];
                     timeSinceLastSpawn = banditSpawningCooldown;
                     waveUi.WaveEnd();
+                    castle.ResetUpgrade();
                 }
             }
         }
