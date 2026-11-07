@@ -9,7 +9,6 @@ public class BanditSpawner : MonoBehaviour
     [SerializeField] private int[] banditCountPerWave;
     [SerializeField] private EndScreen endScreen;
     [SerializeField] private WaveUi waveUi;
-
     private int currentWave;
     private float timeSinceLastSpawn;
     private float banditSpawningCooldown;
@@ -68,6 +67,11 @@ public class BanditSpawner : MonoBehaviour
                     timeSinceLastSpawn = banditSpawningCooldown;
                     waveUi.WaveEnd();
                     castle.ResetUpgrade();
+                    Tower[] towersBuilt = GameObject.FindObjectsByType<Tower>();
+                    foreach (Tower tower in towersBuilt)
+                    {
+                        tower.ResetUpgrade();
+                    }
                 }
             }
         }

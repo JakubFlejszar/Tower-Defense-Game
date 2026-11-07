@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Tower : MonoBehaviour
 {
@@ -11,18 +12,23 @@ public class Tower : MonoBehaviour
     private float timeSinceLastShot;
     private float range;
     private int damage;
-
+    private Vector3 onMapMouse;
+    SpriteRenderer towerSprite;
+    bool upgradedThisWave;
+    private int towerLevel = 0;
     private void Start()
     {
         timeSinceLastShot = startingShootingCooldown;
         shootingCooldown = startingShootingCooldown;
         range = startingRange;
         damage = startingDamage;
+        towerSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         Shooting();
+        MouseClick();
     }
 
     private void Shooting()
@@ -56,5 +62,41 @@ public class Tower : MonoBehaviour
             }
         }
         return closestTarget;
+    }
+    private void MouseClick()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            var mousePos = Mouse.current.position.ReadValue();
+            onMapMouse = Camera.main.ScreenToWorldPoint(mousePos);
+            onMapMouse.z = 0;
+            if (WasPressedOnTower())
+            {
+                UpgradeTower();
+            }
+        }
+    }
+    private bool WasPressedOnTower()
+    {
+        if (towerSprite.bounds.Contains(onMapMouse))
+        {
+            return true;
+        }
+        return false;
+    }
+    private void UpgradeTower()
+    {
+        if (upgradedThisWave == true || towerLevel == 3)
+        {
+            return;
+        }
+        damage += 5;
+        towerLevel++;
+        Debug.Log($"Tower Upgraded - damage: {damage}");
+        upgradedThisWave = true;
+    }
+    public void ResetUpgrade()
+    {
+        upgradedThisWave = false;
     }
 }
