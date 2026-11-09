@@ -8,14 +8,20 @@ public class Tower : MonoBehaviour
     [SerializeField] private int startingDamage = 5;
     [SerializeField] private TowerArrow towerArrow;
 
+    private enum PriorityOption
+    { ClosestBandit, MostHpBandit, LeastHpBandit }
+
+    [SerializeField] private PriorityOption selectedPriority;
+
     private float shootingCooldown;
     private float timeSinceLastShot;
     private float range;
     private int damage;
     private Vector3 onMapMouse;
-    SpriteRenderer towerSprite;
-    bool upgradedThisWave;
+    private SpriteRenderer towerSprite;
+    private bool upgradedThisWave;
     private int towerLevel = 0;
+
     private void Start()
     {
         timeSinceLastShot = startingShootingCooldown;
@@ -63,6 +69,7 @@ public class Tower : MonoBehaviour
         }
         return closestTarget;
     }
+
     private void MouseClick()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -76,6 +83,7 @@ public class Tower : MonoBehaviour
             }
         }
     }
+
     private bool WasPressedOnTower()
     {
         if (towerSprite.bounds.Contains(onMapMouse))
@@ -84,7 +92,8 @@ public class Tower : MonoBehaviour
         }
         return false;
     }
-    private void UpgradeTower()
+
+    public void UpgradeTower()
     {
         if (upgradedThisWave == true || towerLevel == 3)
         {
@@ -95,8 +104,13 @@ public class Tower : MonoBehaviour
         Debug.Log($"Tower Upgraded - damage: {damage}");
         upgradedThisWave = true;
     }
+
     public void ResetUpgrade()
     {
         upgradedThisWave = false;
+    }
+
+    private void ChosenOption()
+    {
     }
 }

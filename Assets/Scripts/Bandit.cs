@@ -92,4 +92,9 @@ public class Bandit : MonoBehaviour
         healthBarScale.x = healthBarFragment;
         healthBar.localScale = healthBarScale;
     }
+
+    public int CurrentHealth()
+    {
+        return health;
+    }
 }

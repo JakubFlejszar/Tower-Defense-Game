@@ -1,8 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private float playTime;
+    private float playTime;
+    [SerializeField] private TMP_Text gameTimeText;
 
     private void Start()
     {

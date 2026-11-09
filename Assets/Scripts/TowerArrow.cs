@@ -28,6 +28,8 @@ public class TowerArrow : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        Vector3 arrowDirection = lastTargetPosition - transform.position;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, arrowDirection);
         transform.position = Vector3.MoveTowards(transform.position, lastTargetPosition, maxDistanceDelta: arrowSpeed * Time.deltaTime);
     }
 
