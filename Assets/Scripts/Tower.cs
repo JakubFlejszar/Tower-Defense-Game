@@ -7,6 +7,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private float startingRange = 1;
     [SerializeField] private int startingDamage = 5;
     [SerializeField] private TowerArrow towerArrow;
+    [SerializeField] private AudioSource arrowSoundSource;
+    [SerializeField] private AudioClip arrowSound;
 
     private enum PriorityOption
     { ClosestBandit, MostHpBandit, LeastHpBandit }
@@ -49,6 +51,7 @@ public class Tower : MonoBehaviour
         {
             TowerArrow newTowerArrow = Instantiate(towerArrow, transform.position, Quaternion.identity);
             newTowerArrow.Setup(damage, target);
+            arrowSoundSource.PlayOneShot(arrowSound);
             timeSinceLastShot = 0;
         }
     }

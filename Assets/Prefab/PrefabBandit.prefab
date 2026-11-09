@@ -246,7 +246,7 @@ MonoBehaviour:
   healthBar: {fileID: 1507044091577623322}
   castle: {fileID: 0}
   targetWaypoint: 1
-  startMovingSpeed: 1
-  startingHealth: 100
+  startMovingSpeed: 10
+  startingHealth: 1000
   startingAttackDamage: 100
   startingAttackCooldown: 3
