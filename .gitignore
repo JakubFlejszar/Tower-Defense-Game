@@ -69,6 +69,12 @@ crashlytics-build.properties
 
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+Assets/Handpainted_Grass_and_Ground_Textures
+Assets/Medieval Action - FX Pack 2.0
+Assets/Medieval Warrior Pack
+Assets/Handpainted_Grass_and_Ground_Textures.meta
+Assets/Medieval Action - FX Pack 2.0.meta
+Assets/Medieval Warrior Pack.meta
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
