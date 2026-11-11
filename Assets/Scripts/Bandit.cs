@@ -10,6 +10,9 @@ public class Bandit : MonoBehaviour
     [SerializeField] private int startingHealth = 50;
     [SerializeField] private int startingAttackDamage = 10;
     [SerializeField] private float startingAttackCooldown = 1.5f;
+    [SerializeField] private AudioSource audioSourceAttack;
+    [SerializeField] private AudioClip attackSound;
+
     private float healthBarWidth;
     private float timeSinceLastAttack;
     private float attackCooldown;
@@ -63,6 +66,7 @@ public class Bandit : MonoBehaviour
         {
             castle.ReceiveDamage(damage);
             timeSinceLastAttack = 0;
+            audioSourceAttack.PlayOneShot(attackSound);
         }
     }
 

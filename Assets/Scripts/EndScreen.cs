@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class EndScreen : MonoBehaviour
 {
+    [SerializeField] private TMP_Text gameTime;
+
     [SerializeField] private GameObject screenTint;
     [SerializeField] private TMP_Text finalText;
     [SerializeField] private Button playAgainButton;
-    [SerializeField] private TMP_Text gameTime;
     [SerializeField] private Timer timer;
     [SerializeField] private Scoreboard scoreboard;
 
     private void Start()
     {
-        gameTime.SetText("");
         screenTint.SetActive(false);
         finalText.SetText("");
         playAgainButton.onClick.AddListener(PlayAgain);

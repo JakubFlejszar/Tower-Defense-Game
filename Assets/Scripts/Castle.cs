@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +5,6 @@ public class Castle : MonoBehaviour
 {
     [SerializeField] private EndScreen endScreen;
     [SerializeField] private int startHealth = 100;
-    [SerializeField] private TMP_Text healthUi;
     [SerializeField] private Transform healthBar;
     private float fullBarScale;
     private Vector3 healthBarScale;
@@ -16,8 +14,9 @@ public class Castle : MonoBehaviour
     private float healthBarHealth;
     private bool upgradedInCurrentWave = false;
     private int castleLevel;
-    Vector3 onMapMouse;
-    SpriteRenderer castle;
+    private Vector3 onMapMouse;
+    private SpriteRenderer castle;
+
     private void Start()
     {
         castle = GetComponent<SpriteRenderer>();
@@ -25,8 +24,6 @@ public class Castle : MonoBehaviour
         healthBarScale = healthBar.localScale;
         health = startHealth;
         maxHealth = health;
-
-        healthUi.text = $"Castle HP: {health}";
     }
 
     private void Update()
@@ -68,6 +65,7 @@ public class Castle : MonoBehaviour
         healthBarScale.y = healthBarHealth * fullBarScale;
         healthBar.localScale = healthBarScale;
     }
+
     private void WhereClicked()
     {
         var mouseClick = Mouse.current.leftButton.wasPressedThisFrame;
@@ -79,6 +77,7 @@ public class Castle : MonoBehaviour
             ClickedOnCastle();
         }
     }
+
     private void ClickedOnCastle()
     {
         if (castle.bounds.Contains(onMapMouse))
@@ -86,6 +85,7 @@ public class Castle : MonoBehaviour
             UpgradeCastle();
         }
     }
+
     private void UpgradeCastle()
     {
         if (castleLevel == 3 || upgradedInCurrentWave == true)
@@ -99,11 +99,12 @@ public class Castle : MonoBehaviour
         UpdateHealthUi();
         ShowHealthBar();
     }
+
     private void UpdateHealthUi()
     {
         healthBarHealth = Mathf.Clamp01((float)health / maxHealth);
-        healthUi.text = $"Castle HP: {health}";
     }
+
     public void ResetUpgrade()
     {
         upgradedInCurrentWave = false;

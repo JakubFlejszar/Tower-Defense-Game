@@ -9,6 +9,7 @@ public class GridBuilder : MonoBehaviour
     [SerializeField] private SpriteRenderer castle;
     [SerializeField] private Vector2Int mapSize = new Vector2Int(20, 20);
     [SerializeField] private SpriteRenderer previewTower;
+    [SerializeField] private UIHelper uiHelper;
     private float tileSize = 4;
 
     private Vector3 mapCorner;
@@ -35,17 +36,20 @@ public class GridBuilder : MonoBehaviour
 
     private void HandleClick()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (!uiHelper.PointerStatus())
         {
-            if (!IsInsideMap())
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                return;
+                if (!IsInsideMap())
+                {
+                    return;
+                }
+                if (isOccupied[tileX, tileY])
+                {
+                    return;
+                }
+                PlaceTower();
             }
-            if (isOccupied[tileX, tileY])
-            {
-                return;
-            }
-            PlaceTower();
         }
     }
 
@@ -118,22 +122,25 @@ public class GridBuilder : MonoBehaviour
 
     private void UpdatePreview()
     {
-        var tileCenter = GetTileCenter(tileX, tileY);
-        previewTower.transform.position = tileCenter;
-        if (!IsInsideMap())
+        if (!uiHelper.PointerStatus())
         {
-            previewTower.color = new Color(r: 1, g: 0, b: 0, a: 0.5f);
-            return;
-        }
-        if (IsInsideMap())
-        {
-            if (isOccupied[tileX, tileY])
+            var tileCenter = GetTileCenter(tileX, tileY);
+            previewTower.transform.position = tileCenter;
+            if (!IsInsideMap())
             {
                 previewTower.color = new Color(r: 1, g: 0, b: 0, a: 0.5f);
+                return;
             }
-            else
+            if (IsInsideMap())
             {
-                previewTower.color = new Color(r: 0, g: 1, b: 0, a: 0.7f);
+                if (isOccupied[tileX, tileY])
+                {
+                    previewTower.color = new Color(r: 1, g: 0, b: 0, a: 0.5f);
+                }
+                else
+                {
+                    previewTower.color = new Color(r: 0, g: 1, b: 0, a: 0.7f);
+                }
             }
         }
     }
