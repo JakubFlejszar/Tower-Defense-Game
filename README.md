@@ -4,7 +4,11 @@ A medieval tower defense game where you defend your castle by building towers to
 
 
 
-https://github.com/user-attachments/assets/4f74987c-ac78-411c-86e8-00f7295fb8e2
+
+
+<img width="1280" height="720" alt="GifGit-ezgif com-video-to-gif-converter(1)" src="https://github.com/user-attachments/assets/cb32a86a-1fb1-4768-8be4-1a0cb16b8123" />
+
+
 
 
 
