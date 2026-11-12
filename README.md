@@ -27,3 +27,15 @@ You can click your castle to upgrade it. Max 3 levels, once per wave, so you hav
 
 ## Defeat
 If bandits destroy your castle, you lose. <sub>Loser</sub>
+
+## Download
+
+You can play the game without Unity, just grab the zip from the [Releases](../../releases) page, unpack it and run the .exe.
+
+## Building it yourself
+
+The project uses 3 paid packs from the Unity Asset Store, which are not included in this repo because of their license. To open and build the project in Unity, you need to download them yourself:
+
+- [Handpainted Grass & Ground Textures](https://assetstore.unity.com/packages/2d/textures-materials/nature/handpainted-grass-ground-textures-free-terrain-tool-urp-hdrp-187634)
+- [Medieval Warrior Pack](https://assetstore.unity.com/packages/2d/characters/medieval-warrior-pack-159577)
+- [Middle Age - Medieval Action Sound FX Pack](https://assetstore.unity.com/packages/audio/sound-fx/middle-age-medieval-action-sound-fx-pack-54030)
