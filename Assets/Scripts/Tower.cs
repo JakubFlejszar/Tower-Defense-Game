@@ -14,7 +14,6 @@ public class Tower : MonoBehaviour
     { ClosestBandit, MostHpBandit, LeastHpBandit }
 
     [SerializeField] private PriorityOption selectedPriority;
-
     private float shootingCooldown;
     private float timeSinceLastShot;
     private float range;
@@ -58,19 +57,47 @@ public class Tower : MonoBehaviour
 
     private Bandit LocateTarget()
     {
-        Bandit closestTarget = null;
-        float closestTargetDistance = range;
+        Bandit target = null;
+        int compareHpLeast = int.MaxValue;
+        int compareHpMost = int.MinValue;
+        float targetDistance = range;
         var banditsLoaded = FindObjectsByType<Bandit>();
         foreach (Bandit bandit in banditsLoaded)
         {
             float banditDistanceFromTower = Vector3.Distance(transform.position, bandit.transform.position);
-            if (banditDistanceFromTower < closestTargetDistance)
+            if (banditDistanceFromTower >= range)
             {
-                closestTarget = bandit;
-                closestTargetDistance = banditDistanceFromTower;
+                continue;
+            }
+            switch (selectedPriority)
+            {
+                case PriorityOption.ClosestBandit:
+
+                    if (banditDistanceFromTower < targetDistance)
+                    {
+                        target = bandit;
+                        targetDistance = banditDistanceFromTower;
+                    }
+                    break;
+
+                case PriorityOption.MostHpBandit:
+                    if (bandit.CurrentHealth() >= compareHpMost)
+                    {
+                        target = bandit;
+                        compareHpMost = target.CurrentHealth();
+                    }
+                    break;
+
+                case PriorityOption.LeastHpBandit:
+                    if (bandit.CurrentHealth() <= compareHpLeast)
+                    {
+                        target = bandit;
+                        compareHpLeast = target.CurrentHealth();
+                    }
+                    break;
             }
         }
-        return closestTarget;
+        return target;
     }
 
     private void MouseClick()
@@ -83,6 +110,7 @@ public class Tower : MonoBehaviour
             if (WasPressedOnTower())
             {
                 UpgradeTower();
+                //towerMenu.OpenMenu();
             }
         }
     }
@@ -111,9 +139,5 @@ public class Tower : MonoBehaviour
     public void ResetUpgrade()
     {
         upgradedThisWave = false;
-    }
-
-    private void ChosenOption()
-    {
     }
 }

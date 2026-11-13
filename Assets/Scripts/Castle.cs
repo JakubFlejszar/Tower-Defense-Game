@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class Castle : MonoBehaviour
     [SerializeField] private EndScreen endScreen;
     [SerializeField] private int startHealth = 100;
     [SerializeField] private Transform healthBar;
+    [SerializeField] private TMP_Text healthText;
     private float fullBarScale;
     private Vector3 healthBarScale;
     private int health;
@@ -24,6 +26,7 @@ public class Castle : MonoBehaviour
         healthBarScale = healthBar.localScale;
         health = startHealth;
         maxHealth = health;
+        healthText.SetText($"Castle heatlh: {health}");
     }
 
     private void Update()
@@ -48,6 +51,8 @@ public class Castle : MonoBehaviour
         health -= damage;
         UpdateHealthUi();
         ShowHealthBar();
+        healthText.SetText($"Castle heatlh: {health}");
+
         if (health <= 0)
         {
             endScreen.Lose();
@@ -98,6 +103,7 @@ public class Castle : MonoBehaviour
         upgradedInCurrentWave = true;
         UpdateHealthUi();
         ShowHealthBar();
+        healthText.SetText($"Castle heatlh: {health}");
     }
 
     private void UpdateHealthUi()

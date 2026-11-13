@@ -247,9 +247,9 @@ MonoBehaviour:
   healthBar: {fileID: 1507044091577623322}
   castle: {fileID: 0}
   targetWaypoint: 1
-  startMovingSpeed: 100
-  startingHealth: 10
-  startingAttackDamage: 1
+  startMovingSpeed: 15
+  startingHealth: 100
+  startingAttackDamage: 15
   startingAttackCooldown: 3
   audioSourceAttack: {fileID: 3966687250447827220}
   attackSound: {fileID: 8300000, guid: 4ae4fe17d19c04e10920bfaca3bd8290, type: 3}
