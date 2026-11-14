@@ -1,38 +1,39 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class TowerMenu : MonoBehaviour
 {
     [SerializeField] private GameObject towerMenu;
-    [SerializeField] private Tower tower;
+
+    private Tower chosenTower;
 
     private TMP_Dropdown priorityOptionsList;
-    [SerializeField] private Button upgradeButton;
     private int chosenPriority;
-    private Vector3 onMapMouse;
-    private SpriteRenderer towerSprite;
 
     private void Start()
     {
         towerMenu.SetActive(false);
-        towerSprite = tower.GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    public void Open(Tower tower)
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        chosenTower = tower;
+        towerMenu.SetActive(true);
+        Debug.Log(tower.transform.position);
+    }
+
+    public void Close()
+    {
+        towerMenu.SetActive(false);
+        chosenTower = null;
+    }
+
+    public void UpgradeChosenTower()
+    {
+        if (chosenTower == null)
         {
-            openMenu();
+            return;
         }
-    }
-
-    private void Menu()
-    {
-    }
-    public void openMenu()
-    {
-        towerMenu.SetActive(!towerMenu.activeSelf);
+        chosenTower.UpgradeTower();
     }
 }

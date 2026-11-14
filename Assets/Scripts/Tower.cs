@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     { ClosestBandit, MostHpBandit, LeastHpBandit }
 
     [SerializeField] private PriorityOption selectedPriority;
+    private TowerMenu towerMenu;
     private float shootingCooldown;
     private float timeSinceLastShot;
     private float range;
@@ -109,8 +110,7 @@ public class Tower : MonoBehaviour
             onMapMouse.z = 0;
             if (WasPressedOnTower())
             {
-                UpgradeTower();
-                //towerMenu.OpenMenu();
+                towerMenu.Open(this);
             }
         }
     }
@@ -139,5 +139,10 @@ public class Tower : MonoBehaviour
     public void ResetUpgrade()
     {
         upgradedThisWave = false;
+    }
+    public void Setup(TowerMenu menu)
+    {
+        towerMenu = menu;
+        Debug.Log("tower menu create");
     }
 }

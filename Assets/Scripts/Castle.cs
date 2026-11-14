@@ -32,14 +32,6 @@ public class Castle : MonoBehaviour
     private void Update()
     {
         WhereClicked();
-        if (castleAlive == true)
-        {
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                int damage = 7;
-                ReceiveDamage(damage);
-            }
-        }
     }
 
     public void ReceiveDamage(int damage)

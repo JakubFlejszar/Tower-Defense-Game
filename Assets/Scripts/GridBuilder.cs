@@ -10,6 +10,7 @@ public class GridBuilder : MonoBehaviour
     [SerializeField] private Vector2Int mapSize = new Vector2Int(20, 20);
     [SerializeField] private SpriteRenderer previewTower;
     [SerializeField] private UIHelper uiHelper;
+    [SerializeField] private TowerMenu towerMenu;
     private float tileSize = 4;
 
     private Vector3 mapCorner;
@@ -56,7 +57,8 @@ public class GridBuilder : MonoBehaviour
     private void PlaceTower()
     {
         towerPos = GetTileCenter(tileX, tileY);
-        GameObject.Instantiate(towerPrefab, towerPos, Quaternion.identity);
+        var newTower = GameObject.Instantiate(towerPrefab, towerPos, Quaternion.identity);
+        newTower.Setup(towerMenu);
         isOccupied[tileX, tileY] = true;
     }
 
