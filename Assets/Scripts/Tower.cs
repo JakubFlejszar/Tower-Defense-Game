@@ -140,9 +140,19 @@ public class Tower : MonoBehaviour
     {
         upgradedThisWave = false;
     }
+
     public void Setup(TowerMenu menu)
     {
         towerMenu = menu;
-        Debug.Log("tower menu create");
+    }
+
+    public void SetPriority(int priorityId)
+    {
+        selectedPriority = (PriorityOption)priorityId;
+    }
+
+    public int ReturnPriority()
+    {
+        return (int)selectedPriority;
     }
 }

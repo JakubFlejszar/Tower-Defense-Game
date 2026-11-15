@@ -7,19 +7,19 @@ public class TowerMenu : MonoBehaviour
 
     private Tower chosenTower;
 
-    private TMP_Dropdown priorityOptionsList;
-    private int chosenPriority;
+    [SerializeField] private TMP_Dropdown priorityOptionsList;
 
     private void Start()
     {
         towerMenu.SetActive(false);
+        priorityOptionsList.onValueChanged.AddListener(OnPriorityChanged);
     }
 
     public void Open(Tower tower)
     {
         chosenTower = tower;
+        priorityOptionsList.SetValueWithoutNotify(chosenTower.ReturnPriority());
         towerMenu.SetActive(true);
-        Debug.Log(tower.transform.position);
     }
 
     public void Close()
@@ -35,5 +35,14 @@ public class TowerMenu : MonoBehaviour
             return;
         }
         chosenTower.UpgradeTower();
+    }
+
+    private void OnPriorityChanged(int priorityId)
+    {
+        if (chosenTower == null)
+        {
+            return;
+        }
+        chosenTower.SetPriority(priorityId);
     }
 }
