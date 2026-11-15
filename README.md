@@ -34,7 +34,7 @@ You can play the game without Unity, just grab the zip from the [Releases](../..
 
 ## Building it yourself
 
-The project uses 3 paid packs from the Unity Asset Store, which are not included in this repo because of their license. To open and build the project in Unity, you need to download them yourself:
+The project uses 3 free packs from the Unity Asset Store, which are not included in this repo because of their license. To open and build the project in Unity, you need to download them yourself:
 
 - [Handpainted Grass & Ground Textures](https://assetstore.unity.com/packages/2d/textures-materials/nature/handpainted-grass-ground-textures-free-terrain-tool-urp-hdrp-187634)
 - [Medieval Warrior Pack](https://assetstore.unity.com/packages/2d/characters/medieval-warrior-pack-159577)
