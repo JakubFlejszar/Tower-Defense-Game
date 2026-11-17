@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private TowerArrow towerArrow;
     [SerializeField] private AudioSource arrowSoundSource;
     [SerializeField] private AudioClip arrowSound;
+    private GoldSystem goldSystem;
+    [SerializeField] private int upgradeCost = 7;
 
     private enum PriorityOption
     { ClosestBandit, MostHpBandit, LeastHpBandit }
@@ -126,7 +128,7 @@ public class Tower : MonoBehaviour
 
     public void UpgradeTower()
     {
-        if (upgradedThisWave == true || towerLevel == 3)
+        if (upgradedThisWave == true || towerLevel == 3 || !goldSystem.TrySpend(upgradeCost))
         {
             return;
         }
@@ -141,8 +143,9 @@ public class Tower : MonoBehaviour
         upgradedThisWave = false;
     }
 
-    public void Setup(TowerMenu menu)
+    public void Setup(TowerMenu menu, GoldSystem gold)
     {
+        goldSystem = gold;
         towerMenu = menu;
     }
 

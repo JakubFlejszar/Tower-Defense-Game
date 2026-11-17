@@ -9,6 +9,7 @@ public class BanditSpawner : MonoBehaviour
     [SerializeField] private int[] banditCountPerWave;
     [SerializeField] private EndScreen endScreen;
     [SerializeField] private WaveUi waveUi;
+    [SerializeField] private GoldSystem goldSystem;
     private int currentWave;
     private float timeSinceLastSpawn;
     private float banditSpawningCooldown;
@@ -37,7 +38,7 @@ public class BanditSpawner : MonoBehaviour
         if (timeSinceLastSpawn >= banditSpawningCooldown)
         {
             Bandit newBandit = Instantiate(banditPrefab);
-            newBandit.Setup(castle, waypoints);
+            newBandit.Setup(castle, waypoints, goldSystem);
             banditCount++;
             timeSinceLastSpawn = 0;
         }

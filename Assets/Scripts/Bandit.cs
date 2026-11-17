@@ -12,6 +12,8 @@ public class Bandit : MonoBehaviour
     [SerializeField] private float startingAttackCooldown = 1.5f;
     [SerializeField] private AudioSource audioSourceAttack;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private int goldForKill = 2;
+    private GoldSystem goldSystem;
 
     private float healthBarWidth;
     private float timeSinceLastAttack;
@@ -77,16 +79,22 @@ public class Bandit : MonoBehaviour
         UpdateHealthBar();
         if (health <= 0)
         {
-            Debug.Log("Bandit's dead");
+            if (health < 0)
+            {
+                return;
+            }
             Destroy(gameObject);
+            goldSystem.AddGold(goldForKill);
+            Debug.Log("Bandit's dead");
             return;
         }
 
         Debug.Log($"Bandit {health}");
     }
 
-    public void Setup(Castle setupCastle, Transform[] setupWaypoints)
+    public void Setup(Castle setupCastle, Transform[] setupWaypoints, GoldSystem gold)
     {
+        goldSystem = gold;
         waypoints = setupWaypoints;
         castle = setupCastle;
     }

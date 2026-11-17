@@ -11,8 +11,9 @@ public class GridBuilder : MonoBehaviour
     [SerializeField] private SpriteRenderer previewTower;
     [SerializeField] private UIHelper uiHelper;
     [SerializeField] private TowerMenu towerMenu;
+    [SerializeField] private GoldSystem goldSystem;
     private float tileSize = 4;
-
+    [SerializeField] private int buildCost = 10;
     private Vector3 mapCorner;
     private int tileX;
     private int tileY;
@@ -49,6 +50,10 @@ public class GridBuilder : MonoBehaviour
                 {
                     return;
                 }
+                if (!goldSystem.TrySpend(buildCost))
+                {
+                    return;
+                }
                 PlaceTower();
             }
         }
@@ -58,7 +63,7 @@ public class GridBuilder : MonoBehaviour
     {
         towerPos = GetTileCenter(tileX, tileY);
         var newTower = GameObject.Instantiate(towerPrefab, towerPos, Quaternion.identity);
-        newTower.Setup(towerMenu);
+        newTower.Setup(towerMenu, goldSystem);
         isOccupied[tileX, tileY] = true;
     }
 

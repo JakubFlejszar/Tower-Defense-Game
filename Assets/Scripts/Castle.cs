@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 
 public class Castle : MonoBehaviour
 {
+    [SerializeField] private GoldSystem goldSystem;
     [SerializeField] private EndScreen endScreen;
     [SerializeField] private int startHealth = 100;
     [SerializeField] private Transform healthBar;
     [SerializeField] private TMP_Text healthText;
+    [SerializeField] private int upgradeCost = 10;
     private float fullBarScale;
     private Vector3 healthBarScale;
     private int health;
@@ -85,7 +87,7 @@ public class Castle : MonoBehaviour
 
     private void UpgradeCastle()
     {
-        if (castleLevel == 3 || upgradedInCurrentWave == true)
+        if (castleLevel == 3 || upgradedInCurrentWave == true || !goldSystem.TrySpend(upgradeCost))
         {
             return;
         }
