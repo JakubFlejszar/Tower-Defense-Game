@@ -39,3 +39,4 @@ The project uses 3 free packs from the Unity Asset Store, which are not included
 - [Handpainted Grass & Ground Textures](https://assetstore.unity.com/packages/2d/textures-materials/nature/handpainted-grass-ground-textures-free-terrain-tool-urp-hdrp-187634)
 - [Medieval Warrior Pack](https://assetstore.unity.com/packages/2d/characters/medieval-warrior-pack-159577)
 - [Middle Age - Medieval Action Sound FX Pack](https://assetstore.unity.com/packages/audio/sound-fx/middle-age-medieval-action-sound-fx-pack-54030)
+- [Trees - 100 Fantasy Trees](https://assetstore.unity.com/packages/2d/environments/trees-100-fantasy-trees-2d-sprites-prefabs-395214)
