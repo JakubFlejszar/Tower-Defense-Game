@@ -28,7 +28,7 @@ public class Castle : MonoBehaviour
         healthBarScale = healthBar.localScale;
         health = startHealth;
         maxHealth = health;
-        healthText.SetText($"Castle heatlh: {health}");
+        healthText.SetText($"Castle health: {health}");
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public class Castle : MonoBehaviour
         health -= damage;
         UpdateHealthUi();
         ShowHealthBar();
-        healthText.SetText($"Castle heatlh: {health}");
+        healthText.SetText($"Castle health: {health}");
 
         if (health <= 0)
         {
@@ -97,7 +97,7 @@ public class Castle : MonoBehaviour
         upgradedInCurrentWave = true;
         UpdateHealthUi();
         ShowHealthBar();
-        healthText.SetText($"Castle heatlh: {health}");
+        healthText.SetText($"Castle health: {health}");
     }
 
     private void UpdateHealthUi()

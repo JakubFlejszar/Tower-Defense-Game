@@ -13,6 +13,7 @@ public class Bandit : MonoBehaviour
     [SerializeField] private AudioSource audioSourceAttack;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private int goldForKill = 2;
+    private SpriteRenderer banditSprite;
     private GoldSystem goldSystem;
 
     private float healthBarWidth;
@@ -34,6 +35,7 @@ public class Bandit : MonoBehaviour
         health = startingHealth;
         movingSpeed = startMovingSpeed;
         transform.position = waypoints[0].position;
+        banditSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -59,6 +61,7 @@ public class Bandit : MonoBehaviour
     private void MovingTowards()
     {
         transform.position = Vector3.MoveTowards(transform.position, waypoints[targetWaypoint].position, maxDistanceDelta: movingSpeed * Time.deltaTime);
+        banditSprite.flipX = !UpdateDirection();
     }
 
     private void AttackCastle()
@@ -108,5 +111,10 @@ public class Bandit : MonoBehaviour
     public int CurrentHealth()
     {
         return health;
+    }
+
+    public bool UpdateDirection()
+    {
+        return transform.position.x < waypoints[targetWaypoint].position.x;
     }
 }
