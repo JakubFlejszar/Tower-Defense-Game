@@ -26,11 +26,11 @@ Transform:
   m_GameObject: {fileID: 780461223735537943}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.9017356, y: 0.09440117, z: 1}
+  m_LocalPosition: {x: 0.74, y: -0.089999974, z: 0}
+  m_LocalScale: {x: 0.90173566, y: 0.09440117, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1683744583293783198}
+  m_Father: {fileID: 1507044091577623322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3309958742384507091
 SpriteRenderer:
@@ -120,7 +120,8 @@ Transform:
   m_LocalPosition: {x: -0.74, y: 0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9171338849532351107}
   m_Father: {fileID: 1683744583293783198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7184313839630954870
@@ -157,7 +158,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1507044091577623322}
-  - {fileID: 9171338849532351107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7962980419896739751
@@ -248,7 +248,7 @@ MonoBehaviour:
   healthBar: {fileID: 1507044091577623322}
   castle: {fileID: 0}
   targetWaypoint: 1
-  startMovingSpeed: 15
+  startMovingSpeed: 150
   startingHealth: 100
   startingAttackDamage: 15
   startingAttackCooldown: 3

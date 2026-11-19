@@ -2727,7 +2727,7 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.2
-  banditCountPerWave: 05000000080000000d000000i
+  banditCountPerWave: 01000000080000000d000000i
   endScreen: {fileID: 1123658371}
   waveUi: {fileID: 1123658372}
   goldSystem: {fileID: 331593493}

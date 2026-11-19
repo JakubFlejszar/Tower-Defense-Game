@@ -13,6 +13,7 @@ public class Bandit : MonoBehaviour
     [SerializeField] private AudioSource audioSourceAttack;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private int goldForKill = 2;
+    private Animator animator;
     private SpriteRenderer banditSprite;
     private GoldSystem goldSystem;
 
@@ -24,9 +25,11 @@ public class Bandit : MonoBehaviour
     private float movingSpeed;
     private Vector3 healthBarScale;
     private float healthBarFragment;
+    private bool isDead;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         healthBarWidth = healthBar.localScale.x;
         healthBarScale = healthBar.localScale;
         attackCooldown = startingAttackCooldown;
@@ -69,23 +72,25 @@ public class Bandit : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
         if (timeSinceLastAttack >= attackCooldown)
         {
-            castle.ReceiveDamage(damage);
             timeSinceLastAttack = 0;
-            audioSourceAttack.PlayOneShot(attackSound);
+            animator.SetTrigger("Attack");
         }
     }
 
     public void ReceiveDamage(int receivedDamage)
     {
+        if (isDead)
+        {
+            return;
+        }
         health -= receivedDamage;
         healthBarFragment = Mathf.Clamp01((float)health / startingHealth);
         UpdateHealthBar();
+
         if (health <= 0)
         {
-            if (health < 0)
-            {
-                return;
-            }
+            isDead = true;
+
             Destroy(gameObject);
             goldSystem.AddGold(goldForKill);
             Debug.Log("Bandit's dead");
@@ -104,7 +109,7 @@ public class Bandit : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBarScale.x = healthBarFragment;
+        healthBarScale.x = healthBarWidth * healthBarFragment;
         healthBar.localScale = healthBarScale;
     }
 
@@ -116,5 +121,10 @@ public class Bandit : MonoBehaviour
     public bool UpdateDirection()
     {
         return transform.position.x < waypoints[targetWaypoint].position.x;
+    }
+    public void PlayAttackSound()
+    {
+        castle.ReceiveDamage(damage);
+        audioSourceAttack.PlayOneShot(attackSound);
     }
 }
