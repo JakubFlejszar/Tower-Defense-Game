@@ -105,6 +105,10 @@ public class Tower : MonoBehaviour
 
     private void MouseClick()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             var mousePos = Mouse.current.position.ReadValue();
