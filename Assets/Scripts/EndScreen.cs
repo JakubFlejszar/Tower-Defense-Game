@@ -13,6 +13,8 @@ public class EndScreen : MonoBehaviour
     [SerializeField] private Button playAgainButton;
     [SerializeField] private Timer timer;
     [SerializeField] private Scoreboard scoreboard;
+    [SerializeField] private Button exitButton;
+    private bool isActive;
 
     private void Start()
     {
@@ -27,6 +29,7 @@ public class EndScreen : MonoBehaviour
 
     public void Lose()
     {
+        isActive = true;
         Time.timeScale = 0;
         finalText.SetText("Defeated");
         screenTint.SetActive(true);
@@ -35,6 +38,7 @@ public class EndScreen : MonoBehaviour
 
     public void Win()
     {
+        isActive = true;
         Time.timeScale = 0;
         finalText.SetText("Victory");
         gameTime.SetText($"Time:{TimeSpan.FromSeconds(timer.ReturnPlayTime()).ToString(@"mm\:ss")}");
@@ -45,6 +49,17 @@ public class EndScreen : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1;
+        isActive = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public bool isEndScreenActive()
+    {
+        return isActive;
     }
 }
