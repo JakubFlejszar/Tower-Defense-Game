@@ -17,6 +17,10 @@ public class TowerMenu : MonoBehaviour
 
     public void Open(Tower tower)
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
         chosenTower = tower;
         priorityOptionsList.SetValueWithoutNotify(chosenTower.ReturnPriority());
         towerMenu.SetActive(true);

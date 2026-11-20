@@ -79,6 +79,10 @@ public class Castle : MonoBehaviour
 
     private void ClickedOnCastle()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
         if (castle.bounds.Contains(onMapMouse))
         {
             UpgradeCastle();
