@@ -48,11 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   startingShootingCooldown: 1
   startingRange: 25
-  startingDamage: 10
+  startingDamage: 12
   towerArrow: {fileID: -4401800616226613024, guid: c231d4b9d0b87c8409eeea31a7aa2065, type: 3}
   arrowSoundSource: {fileID: 2336894830303601811}
   arrowSound: {fileID: 8300000, guid: 0805de7e4fb0f4d03a30ae90e7c64311, type: 3}
-  upgradeCost: 7
+  upgradeCost: 6
   selectedPriority: 0
 --- !u!212 &-9063434833312283914
 SpriteRenderer:

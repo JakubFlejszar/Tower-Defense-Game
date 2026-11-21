@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 6
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.009195144, g: 0.9528302, b: 0, a: 1}
@@ -254,7 +254,7 @@ MonoBehaviour:
   startingAttackCooldown: 3
   audioSourceAttack: {fileID: 3966687250447827220}
   attackSound: {fileID: 8300000, guid: 4ae4fe17d19c04e10920bfaca3bd8290, type: 3}
-  goldForKill: 2
+  goldForKill: 3
 --- !u!82 &3966687250447827220
 AudioSource:
   m_ObjectHideFlags: 0

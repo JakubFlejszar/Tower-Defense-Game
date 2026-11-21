@@ -12,7 +12,7 @@ public class Bandit : MonoBehaviour
     [SerializeField] private float startingAttackCooldown = 1.5f;
     [SerializeField] private AudioSource audioSourceAttack;
     [SerializeField] private AudioClip attackSound;
-    [SerializeField] private int goldForKill = 2;
+    [SerializeField] private int goldForKill = 4;
     private Animator animator;
     private SpriteRenderer banditSprite;
     private GoldSystem goldSystem;
@@ -122,6 +122,7 @@ public class Bandit : MonoBehaviour
     {
         return transform.position.x < waypoints[targetWaypoint].position.x;
     }
+
     public void PlayAttackSound()
     {
         castle.ReceiveDamage(damage);
